@@ -1,0 +1,101 @@
+{
+    "records": [
+        {
+            "id": "rec5aF9TjMjBicXCK",
+            "createdTime": "2018-05-31T00:16:16.000Z",
+            "fields": {
+                "Surf Break": [
+                    "Reef Break"
+                ],
+                "Difficulty Level": 4,
+                "Destination": "Pipeline",
+                "Geocode": "eyJpIjoiUGlwZWxpbmUsIE9haHUsIEhhd2FpaSIsIm8iOnsic3RhdHVzIjoiT0siLCJmb3JtYXR0ZWRBZGRyZXNzIjoiRWh1a2FpIEJlYWNoIFBhcmssIEhhbGVpd2EsIEhJIDk2NzEyLCBVbml0ZW...",
+                "Influencers": [
+                    "recD1zp1pQYc8O7l2",
+                    "rec1ptbRPxhS8rRun"
+                ],
+                "Magic Seaweed Link": "https://magicseaweed.com/Pipeline-Backdoor-Surf-Report/616/",
+                "Photos": [
+                    {
+                        "id": "attf6yu03NAtCuv5L",
+                        "width": 2233,
+                        "height": 1536,
+                        "url": "https://dl.airtable.com/ZuXJZ2NnTF40kCdBfTld_thomas-ashlock-64485-unsplash.jpg?ts=1652710490&userId=usrcdwyncWqGzCjI2&cs=df6f01816a6b3856",
+                        "filename": "thomas-ashlock-64485-unsplash.jpg",
+                        "size": 688397,
+                        "type": "image/jpeg",
+                        "thumbnails": {
+                            "small": {
+                                "url": "https://dl.airtable.com/yfKxR9ZQqiT7drKxpjdF_small_thomas-ashlock-64485-unsplash.jpg?ts=1652710490&userId=usrcdwyncWqGzCjI2&cs=70d5e671460a6197",
+                                "width": 52,
+                                "height": 36
+                            },
+                            "large": {
+                                "url": "https://dl.airtable.com/cFfMuU8NQjaEskeC3B2h_large_thomas-ashlock-64485-unsplash.jpg?ts=1652710490&userId=usrcdwyncWqGzCjI2&cs=5d8357cb3bb3e3ed",
+                                "width": 744,
+                                "height": 512
+                            },
+                            "full": {
+                                "url": "https://dl.airtable.com/psynuQNmSvOTe3BWa0Fw_full_thomas-ashlock-64485-unsplash.jpg?ts=1652710490&userId=usrcdwyncWqGzCjI2&cs=ee10190ddbeb3374",
+                                "width": 2233,
+                                "height": 1536
+                            }
+                        }
+                    }
+                ],
+                "Peak Surf Season Begins": "2018-07-22",
+                "Destination State/Country": "Oahu, Hawaii",
+                "Peak Surf Season Ends": "2018-08-31",
+                "Address": "Pipeline, Oahu, Hawaii"
+            }
+        },
+        {
+            "id": "recH2ennHFNOtB1Wt",
+            "createdTime": "2018-05-31T00:16:16.000Z",
+            "fields": {
+                "Surf Break": [
+                    "Point Break"
+                ],
+                "Difficulty Level": 4,
+                "Destination": "Superbank",
+                "Geocode": "eyJpIjoiU3VwZXJiYW5rLCBHb2xkIENvYXN0LCBBdXN0cmFsaWEiLCJvIjp7InN0YXR1cyI6Ik9LIiwiZm9ybWF0dGVkQWRkcmVzcyI6IlNuYXBwZXIgUm9ja3MgUmQsIENvb2xhbmdhdHRhIFFMRC...",
+                "Influencers": [
+                    "recSkJ4HuvzAUBrdd"
+                ],
+                "Magic Seaweed Link": "https://magicseaweed.com/Surfers-Paradise-Gold-Coast-Surf-Report/1012/",
+                "Photos": [
+                    {
+                        "id": "attmtbEOAQteRjz2p",
+                        "width": 4000,
+                        "height": 3000,
+                        "url": "https://dl.airtable.com/I4E4xZeQbO2g814udQDm_jeremy-bishop-80371-unsplash.jpg?ts=1652710490&userId=usrcdwyncWqGzCjI2&cs=ebbd56fad3199d43",
+                        "filename": "jeremy-bishop-80371-unsplash.jpg",
+                        "size": 1524876,
+                        "type": "image/jpeg",
+                        "thumbnails": {
+                            "small": {
+                                "url": "https://dl.airtable.com/IWP9RPvvSM2pX1sHeigV_small_jeremy-bishop-80371-unsplash.jpg?ts=1652710490&userId=usrcdwyncWqGzCjI2&cs=cf6ba9ad1fa783dd",
+                                "width": 48,
+                                "height": 36
+                            },
+                            "large": {
+                                "url": "https://dl.airtable.com/aBnINo8qQqDvER2f2wGg_large_jeremy-bishop-80371-unsplash.jpg?ts=1652710490&userId=usrcdwyncWqGzCjI2&cs=0920cd5a17f8eade",
+                                "width": 683,
+                                "height": 512
+                            },
+                            "full": {
+                                "url": "https://dl.airtable.com/eZxgLD8hRI2Y27J39LNl_full_jeremy-bishop-80371-unsplash.jpg?ts=1652710490&userId=usrcdwyncWqGzCjI2&cs=54c107c0d06d1723",
+                                "width": 3000,
+                                "height": 2250
+                            }
+                        }
+                    }
+                ],
+                "Peak Surf Season Begins": "2018-11-28",
+                "Destination State/Country": "Gold Coast, Australia",
+                "Peak Surf Season Ends": "2019-02-01",
+                "Address": "Superbank, Gold Coast, Australia"
+            }
+        }
+    ]
+}
