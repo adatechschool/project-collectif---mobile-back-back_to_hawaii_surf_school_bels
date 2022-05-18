@@ -19,7 +19,7 @@ func homeLink(w http.ResponseWriter, r *http.Request) {
 func main() {
 	router := mux.NewRouter().StrictSlash(true)
 	router.HandleFunc("/", homeLink)
-	// router.HandleFunc("/spot", createSpot).Methods("POST")
+	router.HandleFunc("/spot", createSpot).Methods("POST")
 	router.HandleFunc("/spots", getAllSpots).Methods("GET")
 	router.HandleFunc("/spots/{id}", getOneSpot).Methods("GET")
 	// router.HandleFunc("/spots/{id}", updateSpot).Methods("PATCH")
@@ -76,22 +76,25 @@ type Full struct {
 	Height *int64  `json:"height,omitempty"`
 }
 
-// // post request createSpot
-// func createSpot(w http.ResponseWriter, r *http.Request) {
-// 	var newSpot spot
-// 	reqBody, err := ioutil.ReadAll(r.Body)
-// 	if err != nil {
-// 		fmt.Fprintf(w, "Kindly enter data with the spot title and description only in order to update")
-// 	}
+var spots Spots
 
-// 	json.Unmarshal(reqBody, &newSpot)
-// 	spots = append(spots, newSpot)
-// 	w.WriteHeader(http.StatusCreated)
+// post request createSpot
+func createSpot(w http.ResponseWriter, r *http.Request) {
 
-// 	json.NewEncoder(w).Encode(newSpot)
-// }
+	var newSpot Record
+	reqBody, err := ioutil.ReadAll(r.Body)
+	if err != nil {
+		fmt.Fprintf(w, "Kindly enter data with the spot only in order to update")
+	}
 
-// // get request for one spot
+	json.Unmarshal(reqBody, &newSpot)
+	spots.Records = append(spots.Records, newSpot)
+	w.WriteHeader(http.StatusCreated)
+
+	json.NewEncoder(w).Encode(newSpot)
+}
+
+// get request for one spot
 func getOneSpot(w http.ResponseWriter, r *http.Request) {
 	// opened spot.json
 	jsonFile, err := os.Open("spot.json")
@@ -132,8 +135,6 @@ func getAllSpots(w http.ResponseWriter, r *http.Request) {
 	defer jsonFile.Close()
 
 	byteValue, _ := ioutil.ReadAll(jsonFile)
-
-	var spots Spots
 
 	json.Unmarshal(byteValue, &spots)
 	json.NewEncoder(w).Encode(spots)
