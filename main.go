@@ -21,7 +21,7 @@ func main() {
 	router.HandleFunc("/", homeLink)
 	// router.HandleFunc("/spot", createSpot).Methods("POST")
 	router.HandleFunc("/spots", getAllSpots).Methods("GET")
-	// router.HandleFunc("/spots/{id}", getOneSpot).Methods("GET")
+	router.HandleFunc("/spots/{id}", getOneSpot).Methods("GET")
 	// router.HandleFunc("/spots/{id}", updateSpot).Methods("PATCH")
 	// router.HandleFunc("/spots/{id}", deleteSpot).Methods("DELETE")
 	log.Fatal(http.ListenAndServe(":8080", router))
@@ -34,7 +34,7 @@ type Spots struct {
 }
 
 type Record struct {
-	ID          *string `json:"id,omitempty"`
+	ID          string  `json:"id,omitempty"`
 	CreatedTime *string `json:"createdTime,omitempty"`
 	Fields      *Fields `json:"fields,omitempty"`
 }
@@ -92,35 +92,49 @@ type Full struct {
 // }
 
 // // get request for one spot
-// func getOneSpot(w http.ResponseWriter, r *http.Request) {
-// 	spotID := mux.Vars(r)["id"]
-
-// 	for _, singleSpot := range spots {
-// 		if singleSpot.ID == spotID {
-// 			json.NewEncoder(w).Encode(singleSpot)
-// 		}
-// 	}
-// }
-
-// get request for all spots
-func getAllSpots(w http.ResponseWriter, r *http.Request) {
+func getOneSpot(w http.ResponseWriter, r *http.Request) {
+	// opened spot.json
 	jsonFile, err := os.Open("spot.json")
-	// if we os.Open returns an error then handle it
 	if err != nil {
 		fmt.Println(err)
 	}
 	fmt.Println("Successfully Opened spot.json")
-	// defer the closing of our jsonFile so that we can parse it later on
+
 	defer jsonFile.Close()
 
-	// read our opened jsonFile as a byte array.
+	// decrypted json file
 	byteValue, _ := ioutil.ReadAll(jsonFile)
 
-	// we initialize our Users array
+	// initialized with variable according to the struct
 	var spots Spots
 
-	// we unmarshal our byteArray which contains our
-	// jsonFile's content into 'users' which we defined above
+	// get json informations to the variable
+	json.Unmarshal(byteValue, &spots)
+
+	spotID := mux.Vars(r)["id"]
+
+	for _, singleSpot := range spots.Records {
+		if singleSpot.ID == spotID {
+			json.NewEncoder(w).Encode(singleSpot)
+		}
+	}
+}
+
+// get request for all spots
+func getAllSpots(w http.ResponseWriter, r *http.Request) {
+	jsonFile, err := os.Open("spot.json")
+
+	if err != nil {
+		fmt.Println(err)
+	}
+	fmt.Println("Successfully Opened spot.json")
+
+	defer jsonFile.Close()
+
+	byteValue, _ := ioutil.ReadAll(jsonFile)
+
+	var spots Spots
+
 	json.Unmarshal(byteValue, &spots)
 	json.NewEncoder(w).Encode(spots)
 }
