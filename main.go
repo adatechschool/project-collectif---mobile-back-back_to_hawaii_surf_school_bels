@@ -1,15 +1,23 @@
 package main
 
 import (
+	"context"
 	"encoding/json"
 	"fmt"
 	"io/ioutil"
 	"log"
 	"net/http"
+	"net/url"
 	"os"
+
+	"go.mongodb.org/mongo-driver/bson"
+	"go.mongodb.org/mongo-driver/mongo"
+	"go.mongodb.org/mongo-driver/mongo/options"
 
 	"github.com/gorilla/mux"
 )
+
+//database connection
 
 // get request to homepage
 func homeLink(w http.ResponseWriter, r *http.Request) {
@@ -17,6 +25,31 @@ func homeLink(w http.ResponseWriter, r *http.Request) {
 }
 
 func main() {
+
+	username := "sarahwatremet"
+	password := "dpxy0cZJYxvk8RUm"
+	cluster := "cluster-de-fifou.bxtvr.mongodb.net"
+
+	uri := "mongodb+srv://" + url.QueryEscape(username) + ":" +
+		url.QueryEscape(password) + "@" + cluster
+	client, err := mongo.Connect(context.TODO(), options.Client().ApplyURI(uri))
+	if err != nil {
+		panic(err)
+	}
+	defer client.Disconnect(context.TODO())
+	collection := client.Database("hawaii-surf-spots").Collection("surf-spots")
+	cursor, err := collection.Find(context.TODO(), bson.D{})
+	if err != nil {
+		panic(err)
+	}
+	var results []bson.D
+	if err = cursor.All(context.TODO(), &results); err != nil {
+		panic(err)
+	}
+	for _, result := range results {
+		fmt.Println(result)
+	}
+
 	router := mux.NewRouter().StrictSlash(true)
 	router.HandleFunc("/", homeLink)
 	router.HandleFunc("/spot", createSpot).Methods("POST")

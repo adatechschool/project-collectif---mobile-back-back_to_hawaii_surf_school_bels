@@ -2,4 +2,7 @@ module project-collectif---mobile-back-back_to_hawaii_surf_school_bels
 
 go 1.13
 
-require github.com/gorilla/mux v1.8.0
+require (
+	github.com/gorilla/mux v1.8.0
+	go.mongodb.org/mongo-driver v1.9.1
+)
