@@ -22,7 +22,7 @@ import (
 
 // get request to homepage
 func homeLink(w http.ResponseWriter, r *http.Request) {
-	fmt.Fprintf(w, "Welcome!")
+	fmt.Fprintf(w, "Welcome to the API!")
 }
 
 func main() {
@@ -53,11 +53,11 @@ func main() {
 
 	router := mux.NewRouter().StrictSlash(true)
 	router.HandleFunc("/", homeLink)
-	router.HandleFunc("/spot", createSpot).Methods("POST")
-	router.HandleFunc("/spots", getAllSpots).Methods("GET")
-	router.HandleFunc("/spots/{id}", getOneSpot).Methods("GET")
-	// router.HandleFunc("/spots/{id}", updateSpot).Methods("PATCH")
-	// router.HandleFunc("/spots/{id}", deleteSpot).Methods("DELETE")
+	router.HandleFunc("/api/spot", createSpot).Methods("POST")
+	router.HandleFunc("/api/spots", getAllSpots).Methods("GET")
+	router.HandleFunc("/api/spots/{id}", getOneSpot).Methods("GET")
+	// router.HandleFunc("/api/spots/{id}", updateSpot).Methods("PATCH")
+	// router.HandleFunc("/api/spots/{id}", deleteSpot).Methods("DELETE")
 	log.Fatal(http.ListenAndServe(":8080", router))
 }
 
