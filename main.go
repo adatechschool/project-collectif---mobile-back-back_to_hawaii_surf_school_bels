@@ -54,7 +54,7 @@ func main() {
 
 	router := mux.NewRouter().StrictSlash(true)
 	router.HandleFunc("/", homeLink)
-	// router.HandleFunc("/api/spot", createSpot).Methods("POST")
+	router.HandleFunc("/api/spot", createSpot).Methods("POST")
 	router.HandleFunc("/api/spots", getAllSpots).Methods("GET")
 	router.HandleFunc("/api/spots/{id}", getOneSpot).Methods("GET")
 	// router.HandleFunc("/api/spots/{id}", updateSpot).Methods("PATCH")
@@ -65,40 +65,42 @@ func main() {
 // create the strcture of the database in JSON
 
 type Spots struct {
-	Records []struct {
-		ID                      string    `json:"id"`
-		CreatedTime             time.Time `json:"createdTime"`
-		SurfBreak               string    `json:"Surf Break"`
-		DifficultyLevel         int       `json:"Difficulty Level"`
-		Destination             string    `json:"Destination"`
-		Latitude                float64   `json:"Latitude"`
-		Longitude               float64   `json:"Longitude"`
-		MagicSeaweedLink        string    `json:"Magic Seaweed Link"`
-		Photos                  string    `json:"Photos"`
-		PeakSurfSeasonBegins    string    `json:"Peak Surf Season Begins"`
-		DestinationStateCountry string    `json:"Destination State/Country"`
-		PeakSurfSeasonEnds      string    `json:"Peak Surf Season Ends"`
-		Address                 string    `json:"Address"`
-	} `json:"records"`
+	Records []Record `json:"records,omitempty"`
+}
+
+type Record struct {
+	ID                      string    `json:"id"`
+	CreatedTime             time.Time `json:"createdTime"`
+	SurfBreak               string    `json:"Surf Break"`
+	DifficultyLevel         int       `json:"Difficulty Level"`
+	Destination             string    `json:"Destination"`
+	Latitude                float64   `json:"Latitude"`
+	Longitude               float64   `json:"Longitude"`
+	MagicSeaweedLink        string    `json:"Magic Seaweed Link"`
+	Photos                  string    `json:"Photos"`
+	PeakSurfSeasonBegins    string    `json:"Peak Surf Season Begins"`
+	DestinationStateCountry string    `json:"Destination State/Country"`
+	PeakSurfSeasonEnds      string    `json:"Peak Surf Season Ends"`
+	Address                 string    `json:"Address"`
 }
 
 var spots Spots
 
 // post request createSpot
-// func createSpot(w http.ResponseWriter, r *http.Request) {
+func createSpot(w http.ResponseWriter, r *http.Request) {
 
-// 	var newSpot Spots
-// 	reqBody, err := ioutil.ReadAll(r.Body)
-// 	if err != nil {
-// 		fmt.Fprintf(w, "Kindly enter data with the spot only in order to update")
-// 	}
+	var newSpot Record
+	reqBody, err := ioutil.ReadAll(r.Body)
+	if err != nil {
+		fmt.Fprintf(w, "Kindly enter data with the spot only in order to update")
+	}
 
-// 	json.Unmarshal(reqBody, &newSpot)
-// 	spots = append(spots, newSpot)
-// 	w.WriteHeader(http.StatusCreated)
+	json.Unmarshal(reqBody, &newSpot)
+	spots.Records = append(spots.Records, newSpot)
+	w.WriteHeader(http.StatusCreated)
 
-// 	json.NewEncoder(w).Encode(newSpot)
-// }
+	json.NewEncoder(w).Encode(newSpot)
+}
 
 // get request for one spot
 func getOneSpot(w http.ResponseWriter, r *http.Request) {
