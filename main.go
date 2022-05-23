@@ -15,7 +15,6 @@ import (
 	// "go.mongodb.org/mongo-driver/bson"
 	// "go.mongodb.org/mongo-driver/mongo"
 	// "go.mongodb.org/mongo-driver/mongo/options"
-
 	"github.com/gorilla/mux"
 )
 
@@ -99,6 +98,10 @@ func createSpot(w http.ResponseWriter, r *http.Request) {
 	spots.Records = append(spots.Records, newSpot)
 	w.WriteHeader(http.StatusCreated)
 
+	dataBytes, err := json.Marshal(newSpot)
+
+	err = ioutil.WriteFile("spot.json", dataBytes, 0644)
+
 	json.NewEncoder(w).Encode(newSpot)
 }
 
@@ -115,9 +118,6 @@ func getOneSpot(w http.ResponseWriter, r *http.Request) {
 
 	// decrypted json file
 	byteValue, _ := ioutil.ReadAll(jsonFile)
-
-	// initialized with variable according to the struct
-	var spots Spots
 
 	// get json informations to the variable
 	json.Unmarshal(byteValue, &spots)
