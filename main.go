@@ -18,13 +18,7 @@ import (
 	"github.com/gorilla/mux"
 )
 
-//database connection
-
-// get request to homepage
-func homeLink(w http.ResponseWriter, r *http.Request) {
-	fmt.Fprintf(w, "Welcome to the API!")
-}
-
+// database connection
 func main() {
 
 	// username := "sarahwatremet"
@@ -56,13 +50,12 @@ func main() {
 	router.HandleFunc("/api/spot", createSpot).Methods("POST")
 	router.HandleFunc("/api/spots", getAllSpots).Methods("GET")
 	router.HandleFunc("/api/spots/{id}", getOneSpot).Methods("GET")
-	// router.HandleFunc("/api/spots/{id}", updateSpot).Methods("PATCH")
+	router.HandleFunc("/api/spots/{id}", updateSpot).Methods("PATCH")
 	// router.HandleFunc("/api/spots/{id}", deleteSpot).Methods("DELETE")
 	log.Fatal(http.ListenAndServe(":8080", router))
 }
 
 // create the strcture of the database in JSON
-
 type Spots struct {
 	Records []Record `json:"records,omitempty"`
 }
@@ -85,24 +78,27 @@ type Record struct {
 
 var spots Spots
 
-// post request createSpot
-func createSpot(w http.ResponseWriter, r *http.Request) {
+// get request to homepage
+func homeLink(w http.ResponseWriter, r *http.Request) {
+	fmt.Fprintf(w, "Welcome to the API!")
+}
 
-	var newSpot Record
-	reqBody, err := ioutil.ReadAll(r.Body)
+// get request for all spots
+func getAllSpots(w http.ResponseWriter, r *http.Request) {
+
+	jsonFile, err := os.Open("spot.json")
+
 	if err != nil {
-		fmt.Fprintf(w, "Kindly enter data with the spot only in order to update")
+		fmt.Println(err)
 	}
+	fmt.Println("Successfully Opened spot.json")
 
-	json.Unmarshal(reqBody, &newSpot)
-	spots.Records = append(spots.Records, newSpot)
-	w.WriteHeader(http.StatusCreated)
+	defer jsonFile.Close()
 
-	dataBytes, err := json.Marshal(spots)
+	byteValue, _ := ioutil.ReadAll(jsonFile)
 
-	err = ioutil.WriteFile("spot.json", dataBytes, 0644)
-
-	json.NewEncoder(w).Encode(newSpot)
+	json.Unmarshal(byteValue, &spots)
+	json.NewEncoder(w).Encode(spots)
 }
 
 // get request for one spot
@@ -131,44 +127,46 @@ func getOneSpot(w http.ResponseWriter, r *http.Request) {
 	}
 }
 
-// get request for all spots
-func getAllSpots(w http.ResponseWriter, r *http.Request) {
-	fmt.Println("I am spots", spots)
-	jsonFile, err := os.Open("spot.json")
+// post request createSpot
+func createSpot(w http.ResponseWriter, r *http.Request) {
 
+	var newSpot Record
+	reqBody, err := ioutil.ReadAll(r.Body)
 	if err != nil {
-		fmt.Println(err)
+		fmt.Fprintf(w, "Kindly enter data with the spot only in order to update")
 	}
-	fmt.Println("Successfully Opened spot.json")
 
-	defer jsonFile.Close()
+	json.Unmarshal(reqBody, &newSpot)
+	spots.Records = append(spots.Records, newSpot)
+	w.WriteHeader(http.StatusCreated)
 
-	byteValue, _ := ioutil.ReadAll(jsonFile)
+	dataBytes, err := json.Marshal(spots)
 
-	json.Unmarshal(byteValue, &spots)
-	json.NewEncoder(w).Encode(spots)
+	err = ioutil.WriteFile("spot.json", dataBytes, 0644)
+
+	json.NewEncoder(w).Encode(newSpot)
 }
 
-// // update request for an spot
-// func updateSpot(w http.ResponseWriter, r *http.Request) {
-// 	spotID := mux.Vars(r)["id"]
-// 	var updatedSpot spot
+// update request for an spot
+func updateSpot(w http.ResponseWriter, r *http.Request) {
+	spotID := mux.Vars(r)["id"]
+	var updatedSpot spot
 
-// 	reqBody, err := ioutil.ReadAll(r.Body)
-// 	if err != nil {
-// 		fmt.Fprintf(w, "Kindly enter data with the spot title and description only in order to update")
-// 	}
-// 	json.Unmarshal(reqBody, &updatedSpot)
+	reqBody, err := ioutil.ReadAll(r.Body)
+	if err != nil {
+		fmt.Fprintf(w, "Kindly enter data with the spot title and description only in order to update")
+	}
+	json.Unmarshal(reqBody, &updatedSpot)
 
-// 	for i, singleSpot := range spots {
-// 		if singleSpot.ID == eventID {
-// 			singleSpot.Title = updatedEvent.Title
-// 			singleSpot.Description = updatedEvent.Description
-// 			spots = append(spots[:i], singleSpot)
-// 			json.NewEncoder(w).Encode(singleSpot)
-// 		}
-// 	}
-// }
+	for i, singleSpot := range spots {
+		if singleSpot.ID == eventID {
+			singleSpot.Title = updatedEvent.Title
+			singleSpot.Description = updatedEvent.Description
+			spots = append(spots[:i], singleSpot)
+			json.NewEncoder(w).Encode(singleSpot)
+		}
+	}
+}
 
 // // delete request to remove an spot
 // func deleteSpot(w http.ResponseWriter, r *http.Request) {
