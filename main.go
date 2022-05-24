@@ -98,7 +98,7 @@ func createSpot(w http.ResponseWriter, r *http.Request) {
 	spots.Records = append(spots.Records, newSpot)
 	w.WriteHeader(http.StatusCreated)
 
-	dataBytes, err := json.Marshal(newSpot)
+	dataBytes, err := json.Marshal(spots)
 
 	err = ioutil.WriteFile("spot.json", dataBytes, 0644)
 
@@ -133,6 +133,7 @@ func getOneSpot(w http.ResponseWriter, r *http.Request) {
 
 // get request for all spots
 func getAllSpots(w http.ResponseWriter, r *http.Request) {
+	fmt.Println("I am spots", spots)
 	jsonFile, err := os.Open("spot.json")
 
 	if err != nil {
