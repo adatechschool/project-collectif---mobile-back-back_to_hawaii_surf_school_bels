@@ -13,7 +13,8 @@
             "Peak Surf Season Begins": "2018-07-22",
             "Destination State/Country": "Oahu, Hawaii",
             "Peak Surf Season Ends": "2018-08-31",
-            "Address": "Pipeline, Oahu, Hawaii"
+            "Address": "Pipeline, Oahu, Hawaii",
+            "isFavorite": true
         },
         {
             "id": "2",
@@ -28,7 +29,8 @@
             "Peak Surf Season Begins": "2018-11-28",
             "Destination State/Country": "Gold Coast, Australia",
             "Peak Surf Season Ends": "2019-02-01",
-            "Address": "Superbank, Gold Coast, Australia"
+            "Address": "Superbank, Gold Coast, Australia",
+            "isFavorite": false
         },
         {
             "id": "3",
@@ -43,7 +45,8 @@
             "Peak Surf Season Begins": "23-08-2018",
             "Destination State/Country": "Queens, New York",
             "Peak Surf Season Ends": "17-10-2018",
-            "Address": ""
+            "Address": "",
+            "isFavorite": true
         }
     ]
 }

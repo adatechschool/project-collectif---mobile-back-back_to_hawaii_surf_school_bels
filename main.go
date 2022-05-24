@@ -74,6 +74,7 @@ type Record struct {
 	DestinationStateCountry string    `json:"Destination State/Country"`
 	PeakSurfSeasonEnds      string    `json:"Peak Surf Season Ends"`
 	Address                 string    `json:"Address"`
+	IsFavorite              bool      `json:"isFavorite"`
 }
 
 var spots Spots
