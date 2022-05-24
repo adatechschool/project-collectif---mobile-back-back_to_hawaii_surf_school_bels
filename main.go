@@ -149,23 +149,39 @@ func createSpot(w http.ResponseWriter, r *http.Request) {
 
 // update request for an spot
 func updateSpot(w http.ResponseWriter, r *http.Request) {
+
 	spotID := mux.Vars(r)["id"]
-	var updatedSpot spot
+	var updatedSpot Record
 
 	reqBody, err := ioutil.ReadAll(r.Body)
 	if err != nil {
 		fmt.Fprintf(w, "Kindly enter data with the spot title and description only in order to update")
 	}
+
 	json.Unmarshal(reqBody, &updatedSpot)
 
-	for i, singleSpot := range spots {
-		if singleSpot.ID == eventID {
-			singleSpot.Title = updatedEvent.Title
-			singleSpot.Description = updatedEvent.Description
-			spots = append(spots[:i], singleSpot)
+	for i, singleSpot := range spots.Records {
+		if singleSpot.ID == spotID {
+			singleSpot.SurfBreak = updatedSpot.SurfBreak
+			singleSpot.DifficultyLevel = updatedSpot.DifficultyLevel
+			singleSpot.Destination = updatedSpot.Destination
+			singleSpot.Latitude = updatedSpot.Latitude
+			singleSpot.Longitude = updatedSpot.Longitude
+			singleSpot.MagicSeaweedLink = updatedSpot.MagicSeaweedLink
+			singleSpot.Photos = updatedSpot.Photos
+			singleSpot.PeakSurfSeasonBegins = updatedSpot.PeakSurfSeasonBegins
+			singleSpot.DestinationStateCountry = updatedSpot.DestinationStateCountry
+			singleSpot.PeakSurfSeasonEnds = updatedSpot.PeakSurfSeasonEnds
+			singleSpot.Address = updatedSpot.Address
+			spots.Records = append(spots.Records[:i], singleSpot)
+			w.WriteHeader(http.StatusCreated)
+
 			json.NewEncoder(w).Encode(singleSpot)
 		}
 	}
+
+	dataBytes, err := json.Marshal(spots)
+	err = ioutil.WriteFile("spot.json", dataBytes, 0644)
 }
 
 // // delete request to remove an spot
