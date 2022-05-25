@@ -47,6 +47,73 @@
             "Peak Surf Season Ends": "17-10-2018",
             "Address": "",
             "isFavorite": true
+        },
+        {
+            "id": "4",
+            "createdTime": "2018-05-31T00:16:16.000Z",
+            "Surf Break": "Reef Break",
+            "Difficulty Level": 3,
+            "Destination": "The Bubble",
+            "Latitude" : 28.7449091,
+            "Longitude" : -13.942277999999988,
+            "Magic Seaweed Link": "https://fr.magicseaweed.com/Canary-Islands-Surf-Forecast/5/",
+            "Photos": "https://dl.airtable.com/TTgWI4QrOgKO2uLAEsMg_josh-withers-636290-unsplash.jpg",
+            "Peak Surf Season Begins": "01-06-2018",
+            "Destination State/Country": "Fuerteventura, Canary Islands",
+            "Peak Surf Season Ends": "01-09-2018",
+            "Address": "35650 La Oliva, Las Palmas, Spain",
+            "isFavorite": false
+        },
+        {
+            "id": "5",
+            "createdTime": "2018-05-31T00:16:16.000Z",
+            "Surf Break": "Reef Break",
+            "Difficulty Level": 3 ,
+            "Destination": "Pasta Point",
+            "Latitude" : 4.317842,
+            "Longitude" : 73.59173299999998,
+            "Magic Seaweed Link": "https://magicseaweed.com/Maldives-Surf-Forecast/56/",
+            "Photos": "https://dl.airtable.com/o4SxpoNxTSC49F4P2Hlc_aleksandar-popovski-693255-unsplash.jpg",
+            "Peak Surf Season Begins": "01-04-2018",
+            "Destination State/Country": "Maldives",
+            "Peak Surf Season Ends": "31-05-2018",
+            "Address": "Male North Harbour, Boduthakurufaanu Magu, Malé, Maldives",
+            "isFavorite": false
+        },
+        {
+            "id": "6",
+            "createdTime": "2018-05-31T00:16:16.000Z",
+            "Surf Break": "Point Break",
+            "Difficulty Level": 2 ,
+            "Destination": "Manu Bay",
+            "Latitude" : -37.8214592,
+            "Longitude" : 174.81221619999997,
+            "Magic Seaweed Link": "https://magicseaweed.com/Raglan-Surf-Report/91/",
+            "Photos": "https://dl.airtable.com/jF7Y6RpGQueQok9TRQ9I_holger-link-707884-unsplash.jpg",
+            "Peak Surf Season Begins": "01-12-2018",
+            "Destination State/Country": "New Zealand",
+            "Peak Surf Season Ends": "31-01-2019",
+            "Address": "Manu Bay Rd, Raglan 3297, New Zealand",
+            "isFavorite": false
+        },
+        {
+            "id": "7",
+            "createdTime": "2018-05-31T00:16:16.000Z",
+            "Surf Break": "Point Break",
+            "Difficulty Level": 5,
+            "Destination": "Skeleton Bay",
+            "Latitude" : -25.9144919,
+            "Longitude" : 14.906859,
+            "Magic Seaweed Link": "https://magicseaweed.com/Skeleton-Bay-Surf-Report/4591/",
+            "Photos": "https://dl.airtable.com/.attachments/7b2c0f5200c9f399f064848a4c5db2ab/23c563aa/YzqA020RRLaTyAZAta9g_brandon-compagne-308937-unsplash.jpg",
+            "Peak Surf Season Begins": "01-09-2018",
+            "Destination State/Country": "Namibia",
+            "Peak Surf Season Ends": "30-11-2018",
+            "Address": "Namibia",
+            "isFavorite": true
         }
+        
+
+
     ]
 }
